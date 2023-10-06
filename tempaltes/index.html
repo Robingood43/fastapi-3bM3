@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ТСН СНТ ШИННИК-1</title>
+  <style>
+  :root {
+    --primary-font: 'Open Sans', sans-serif;
+    --secondary-font: 'Nunito', sans-serif;
+  }
+
+  body {
+    overflow-y: scroll;
+    font-family: var(--primary-font);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    -webkit-animation: fadein 2s;
+    animation: fadein 2s;
+    color: var(--primary-color);
+    line-height: 1.4;
+    font-weight: 400;
+    word-wrap: break-word;
+    background-color: var(--main-background);
+    font-family: var(--primary-font);
+    font-size: 1.5em;
+  }
+  .message {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #f44336d6;
+  color: white;
+  padding: 16px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: none;
+}
+
+.message--success {
+  background-color: #12972fc2;
+}
+
+button.close {
+  float: right;
+  font-size: 1.5em;
+  font-weight: bold;
+  line-height: 1;
+  color: white;
+  opacity: .5;
+  border: none;
+  background: transparent;
+}
+  .button {
+    background-color: #12972F30; /* Измените это на любой цвет, соответствующий вашему сайту */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: #12972fc9; /* Измените это на любой цвет, соответствующий вашему сайту */
+  }
+  .navbar, .menu {
+    font-family: var(--primary-font);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none
+  }
+
+  .navbar a, .menu__link, .submenu__link {
+    margin-right: 20px;
+    color: #000;
+    text-decoration: none;
+
+  }
+  .all{
+  opacity: 0;
+    animation: fadeIn 2s forwards;
+  }
+  .background {
+      text-shadow: 0 2px #000;
+    font-family: var(--secondary-font);
+    width: 103.5%;
+    height: 500px;
+    background: url('{{ url_for('static', path='image/image.jpeg') }}') no-repeat center center fixed;
+    background-size: cover;
+ }
+
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  h1 {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 300px;
+    color: white;
+    transform: translateY(-50%);
+  }
+  .submenu {
+    list-style: none;
+    margin: 0;
+    display: none;
+    position: absolute;
+    top: AUTO;
+    left: AUTO;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    min-width: 200px;
+  }
+
+  .submenu__item {
+    padding: 10px;
+  }
+
+  .menu__item-parent:hover .submenu {
+    display: block;
+  }
+
+  .main, .container, .announce__item {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #12972F30;
+    box-shadow: 0 0 10px rgba(0,0,0,.1);
+    padding: 1.5em;
+    flex: 1 1 100%;
+    font-size: .75em;
+    display: flex;
+  }
+
+  .item {
+    border-radius: 12px;
+    transition: all linear .2s;
+    word-break: break-word;
+    margin-bottom: 0.5rem;
+    padding: 1.5em;
+    margin-bottom: 0.5rem;
+    background: white;
+           padding-top: 0px;
+       padding-bottom: 0px;
+  }
+    .middle-text {
+    flex: 1 1 100%;
+    font-family: var(--secondary-font);
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: white;
+    color: black;
+    padding: 30px;
+    text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    display: flex;
+  }
+  .item__content, .announce__content {
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    background-color: rgba(0, 123, 255, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    font-size: 1.2em; // Крупный размер шрифта
+    line-height: 1.6; // Изменение межстрочного интервала
+    border: 1px solid rgba(0, 0, 0, 0.12); // Добавление границы
+  }
+
+  .item__content:hover, .announce__content:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 123, 255, 0.15); // Изменение цвета фона при наведении курсора
+    border-color: rgba(0, 0, 0, 0.2); // Изменение цвета границы при наведении курсора
+  }
+.announce.section--swiper {
+    align-items: stretch;
+    display: flex;
+    flex-direction: column;
+        width: 35%
+}
+.item__title, .announce__title {
+        font-size: 1.5em; /* Размер заголовка */
+        font-weight: bold; /* Жирный шрифт */
+        margin-bottom: 10px; /* Отступ снизу */
+        color: #12972F; /* Цвет текста */
+    }
+
+    .item__intro, .item__text {
+        font-size: 1em; /* Размер текста */
+        margin-bottom: 15px; /* Отступ снизу */
+    }
+
+    .item__date, .announce__date {
+        font-size: 0.9em; /* Размер даты */
+        color: #777; /* Цвет даты */
+    }
+
+    .item__intro, .item__text, .item__title, .announce__title {
+        /* Добавьте любые другие стили, которые вам нужны */
+    }
+@media screen and (max-width: 800px) {
+  .announce.section--swiper {
+      align-items: stretch;
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+  }
+  li{
+      padding-top: 5px;
+
+  }
+  body {
+    font-size: 14px; /* Уменьшаем размер шрифта */
+  }
+
+  .navbar {
+    display: unset;
+    flex-direction: column; /* элементы меню в столбец */
+  }
+  .navbar, .menu{
+      flex-direction: column;
+  }
+  .navbar a {
+    font-size: 1.2em; /* Уменьшите размер текста, чтобы уложить больше на экран*/
+    margin-bottom: 10px; /* добавьте пространство между элементами списка */
+  }
+
+  .background {
+    height: 300px; /* уменьшаем высоту изображения */
+    width: 106%;
+
+  }
+
+  h1 {
+    text-align: center;
+    position: absolute;
+    font-size: 1.2em;
+    top: 300px;
+  }
+
+  .container {
+    width: 100%; /* скорректируйте ширину для меньшего размера экрана */
+    font-size: 0.8em; /* Уменьшаем размер шрифта */
+    padding: 1em; /* Уменьшаем отступ */
+    align-items:normal
+  }
+
+  .middle-text {
+    padding: 10px; /* уменьшаем отступы для текста */
+    font-size: 0.9em; /* уменьшаем размер шрифта */
+  }
+
+}
+  </style>
+</head>
+<body class ="all">
+{% if 'error' in messages %}
+  <div class="message message--error">
+    <button class="close">&times;</button>
+    <p>{{ messages['error'] }}</p>
+  </div>
+{% elif 'success' in messages %}
+  <div class="message message--success">
+    <button class="close">&times;</button>
+    <p>{{ messages['success'] }}</p>
+  </div>
+{% endif %}
+<div class="navbar">
+    <div>
+    <a href="/">Главная</a>
+    <a href="/news.html">Новости</a>
+    <a href="/documents.html">Документы</a>
+    <a href="/contact.html">Контакты</a>
+    </div>
+    <div>
+    <a href="/auth.html"class="button">Вход</a>
+    <a href="/profile.html"class="button">Профиль</a>
+        </div>
+  </div>
+
+  <div class="background">
+    <h1>ТОВАРИЩЕСТВО СОБСТВЕННИКОВ НЕДВИЖИМОСТИ САДОВОДЧЕСКОЕ НЕКОММЕРЧЕСКОЕ ТОВАРИЩЕСТВО "ШИННИК-1"</h1>
+  </div>
+
+  <main class="main container container--grid widebg">
+    <section class="announce section--swiper">
+      <h2 class="section__title">Объявления</h2>
+      <div class="items swiper-wrapper announce__list">
+        {% for ad in ads %}
+          <article class="item swiper-slide list__item announce__item">
+
+            <div class="item__content announce__content">
+                <h2 class="item__title announce__title">{{ ad.title }}</h2>
+                {% if ad.description|length//2 <= 40 %}
+                    {% for add in ad.description[:ad.description|length//2] %}
+                        <div class="item__intro item__text"style="white-space: pre-line; text-align: justify; font-style: italic; color: #333;">{{ add }}</div>
+                    {% endfor %}
+                {% else %}
+                        <div class="item__intro item__text"style="white-space: pre-line; text-align: justify; font-style: italic; color: #333;"></div>
+                {% endif %}
+                <div class="item__date announce__date">{{ ad.date_add }}</div>
+                <div class="item__date announce__more"title="Нажмите, чтобы открыть: {{ ad.title }}"  onclick="window.location.href='/open/{{ ad.title }}' " style="cursor: pointer;">{{ ad.more }}</div>
+            </div>
+
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+  <script>
+    window.onload = function() {
+      document.querySelector(".all").style.opacity = 1;
+    };
+  </script>
+<script>
+window.onload = function() {
+  var messages = document.querySelectorAll('.message');
+  messages.forEach(function(msg) {
+    msg.style.display = 'block';
+
+    var closeBtn = msg.querySelector('.close');
+    closeBtn.addEventListener('click', function() {
+      msg.style.display = 'none';
+    });
+
+    setTimeout(function() {
+      msg.style.display = 'none';
+    }, 5000);
+  });
+
+  document.querySelector(".all").style.opacity = 1;
+};
+</script>
+</body>
+</html>
